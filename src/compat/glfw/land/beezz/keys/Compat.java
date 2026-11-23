@@ -6,27 +6,24 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.sounds.SoundEvents;
 
-/**
- * What differs between game versions. One copy of this class per family, picked in build.gradle:
- * sdl (26.3 and later), glfw-gui (26.2), glfw (1.21 - 26.1).
- */
+/** What differs between game versions. The branch picks one copy in build.gradle. */
 final class Compat {
-    static final InputConstants.Type KEYBOARD = InputConstants.Type.KEYBOARD;
-    static final int LGUI = InputConstants.KEY_LGUI, RGUI = InputConstants.KEY_RGUI, MENU = 101, KP_DIVIDE = 84, KP_SUBTRACT = 86, KP_DECIMAL = 99;
+    static final InputConstants.Type KEYBOARD = InputConstants.Type.KEYSYM;
+    static final int LGUI = 343, RGUI = 347, MENU = 348, KP_DIVIDE = 331, KP_SUBTRACT = 333, KP_DECIMAL = 330;
 
     private Compat() {}
 
     static Screen screen(Minecraft mc) {
-        return mc.gui.screen();
+        return mc.screen;
     }
 
     static void setScreen(Minecraft mc, Screen screen) {
-        mc.gui.setScreen(screen);
+        mc.setScreen(screen);
     }
 
     /** No loading overlay on top. */
     static boolean loaded(Minecraft mc) {
-        return mc.gui.overlay() == null;
+        return mc.getOverlay() == null;
     }
 
     /** The vanilla button click, also used for the keyboard's own hits. */

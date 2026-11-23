@@ -1,7 +1,7 @@
 package land.beezz.keys;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -86,12 +86,12 @@ final class CommandScreen extends Screen {
     }
 
     @Override
-    public void extractRenderState(GuiGraphicsExtractor g, int mx, int my, float partialTick) {
-        super.extractRenderState(g, mx, my, partialTick);
+    public void render(GuiGraphics g, int mx, int my, float partialTick) {
+        super.render(g, mx, my, partialTick);
         int cx = width / 2, y = height / 2 - 40;
-        g.centeredText(font, title, cx, y - 34, 0xFFFFFFFF);
-        g.centeredText(font, Component.literal(Config.modsText(mods) + keyLabel), cx, y - 18, 0xFFFFD84A);
-        g.centeredText(font, Component.translatable("beezzkeys.command.note"), cx, y + 90, 0xFF9A9AA4);
+        g.drawCenteredString(font, title, cx, y - 34, 0xFFFFFFFF);
+        g.drawCenteredString(font, Component.literal(Config.modsText(mods) + keyLabel), cx, y - 18, 0xFFFFD84A);
+        g.drawCenteredString(font, Component.translatable("beezzkeys.command.note"), cx, y + 90, 0xFF9A9AA4);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package land.beezz.keys;
 
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -85,15 +85,15 @@ final class PresetsScreen extends Screen {
     }
 
     @Override
-    public void extractRenderState(GuiGraphicsExtractor g, int mx, int my, float partialTick) {
-        super.extractRenderState(g, mx, my, partialTick);
-        g.centeredText(font, title, width / 2, 12, 0xFFFFFFFF);
+    public void render(GuiGraphics g, int mx, int my, float partialTick) {
+        super.render(g, mx, my, partialTick);
+        g.drawCenteredString(font, title, width / 2, 12, 0xFFFFFFFF);
         Component line = message != null ? message
                 : Config.presetNames().isEmpty() ? Component.translatable("beezzkeys.presets.empty")
                 : Component.translatable("beezzkeys.presets.pick");
-        g.centeredText(font, line, width / 2, 61, message != null ? 0xFFFFD84A : 0xFF9A9AA4);
+        g.drawCenteredString(font, line, width / 2, 61, message != null ? 0xFFFFD84A : 0xFF9A9AA4);
         if (hiddenRows > 0) {
-            g.centeredText(font, Component.translatable("beezzkeys.presets.more", hiddenRows), width / 2, height - 42, 0xFF9A9AA4);
+            g.drawCenteredString(font, Component.translatable("beezzkeys.presets.more", hiddenRows), width / 2, height - 42, 0xFF9A9AA4);
         }
     }
 
