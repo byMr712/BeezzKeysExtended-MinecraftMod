@@ -112,9 +112,9 @@ Game tests with screenshots are run with `./gradlew runClientGameTest`; screensh
 
 ## Other versions
 
-Versions 1.21-26.3 live in separate branches of this repository: [1.21](../../tree/1.21), [1.21.1](../../tree/1.21.1), [1.21.2](../../tree/1.21.2), [1.21.3](../../tree/1.21.3), [1.21.4](../../tree/1.21.4), [1.21.5](../../tree/1.21.5), [1.21.6](../../tree/1.21.6), [1.21.7](../../tree/1.21.7), [1.21.8](../../tree/1.21.8), [1.21.9](../../tree/1.21.9), [1.21.10](../../tree/1.21.10), [1.21.11](../../tree/1.21.11), [26.1](../../tree/26.1), [26.1.1](../../tree/26.1.1), [26.1.2](../../tree/26.1.2), [26.2](../../tree/26.2), [26.3](../../tree/26.3). Versions below 1.21 stay unchanged in the `ports/` folder of the 26.3 branch.
+Versions 1.20.1-26.3 live in separate branches of this repository: [1.20.1](../../tree/1.20.1), [1.21](../../tree/1.21), [1.21.1](../../tree/1.21.1), [1.21.2](../../tree/1.21.2), [1.21.3](../../tree/1.21.3), [1.21.4](../../tree/1.21.4), [1.21.5](../../tree/1.21.5), [1.21.6](../../tree/1.21.6), [1.21.7](../../tree/1.21.7), [1.21.8](../../tree/1.21.8), [1.21.9](../../tree/1.21.9), [1.21.10](../../tree/1.21.10), [1.21.11](../../tree/1.21.11), [26.1](../../tree/26.1), [26.1.1](../../tree/26.1.1), [26.1.2](../../tree/26.1.2), [26.2](../../tree/26.2), [26.3](../../tree/26.3). The [1.20.1](../../tree/1.20.1) branch keeps the original generator and the Fabric/Forge ports unchanged.
 
 ## Authors and Licenses
 
 - **Mod author:** [erkinpaw](https://github.com/erkinpaw) · **License:** [MIT](LICENSE).
-- **Author of the port to Fabric/NeoForge 1.21-26.3:** [Mr712](https://github.com/byMr712/BeezzKeysExtended-MinecraftMod) · **License:** [MIT](LICENSE).
+- **Author of the port to Fabric/NeoForge/Forge 1.20.1-26.3:** [Mr712](https://github.com/byMr712/BeezzKeysExtended-MinecraftMod) · **License:** [MIT](LICENSE).
