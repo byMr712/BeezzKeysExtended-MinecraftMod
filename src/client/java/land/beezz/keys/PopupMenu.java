@@ -1,7 +1,7 @@
 package land.beezz.keys;
 
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
 import java.util.List;
@@ -71,7 +71,7 @@ final class PopupMenu {
         scroll = Math.max(0, Math.min(scroll - dy * ITEM * 2, Math.max(0, contentH + 4 - h)));
     }
 
-    void render(GuiGraphicsExtractor g, Font font, int mx, int my) {
+    void render(GuiGraphics g, Font font, int mx, int my) {
         g.fill(x - 1, y - 1, x + w + 1, y + h + 1, 0xFF6A6A74);
         g.fill(x, y, x + w, y + h, 0xFF15151A);
         Item hover = at(mx, my);
@@ -100,8 +100,8 @@ final class PopupMenu {
             String text = item.label.getString();
             int room = x + w - 6 - rightW - tx;
             if (font.width(text) > room) text = font.plainSubstrByWidth(text, room - 6) + "…";
-            g.text(font, text, tx, iy + 2, dim ? 0xFF9A9AA4 : 0xFFFFFFFF, false);
-            if (item.right != null) g.text(font, item.right, x + w - 6 - font.width(item.right), iy + 2, 0xFF8B8B95, false);
+            g.drawString(font, text, tx, iy + 2, dim ? 0xFF9A9AA4 : 0xFFFFFFFF, false);
+            if (item.right != null) g.drawString(font, item.right, x + w - 6 - font.width(item.right), iy + 2, 0xFF8B8B95, false);
         }
         g.disableScissor();
     }
