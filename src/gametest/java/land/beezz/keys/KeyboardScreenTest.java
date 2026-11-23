@@ -1,10 +1,10 @@
 package land.beezz.keys;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import land.beezz.keys.mixin.KeyMappingAccessor;
 import net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext;
-import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
@@ -72,8 +72,15 @@ public class KeyboardScreenTest implements FabricClientGameTest {
 
     private String binding(String name) {
         return ctx.computeOnClient(mc -> {
-            KeyMapping m = KeyMapping.get(name);
-            return name + " = " + KeyMappingHelper.getBoundKeyOf(m).getName();
+            KeyMapping m = null;
+            for (KeyMapping candidate : mc.options.keyMappings) {
+                if (candidate.getName().equals(name)) {
+                    m = candidate;
+                    break;
+                }
+            }
+            if (m == null) throw new IllegalStateException("no mapping " + name);
+            return name + " = " + ((KeyMappingAccessor) m).beezzkeys$key().getName();
         });
     }
 

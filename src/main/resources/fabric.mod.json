@@ -2,26 +2,33 @@
   "schemaVersion": 1,
   "id": "beezzkeys",
   "version": "${version}",
-  "name": "BeezzKeys",
-  "description": "Наглядная схема клавиатуры в настройках управления: видно, какие клавиши заняты, какие свободны и где конфликты.",
+  "name": "BeezzKeys (Extended)",
+  "description": "Key binds as a drawn keyboard: used keys take the colour of their category, free keys are grey, conflicts are red.",
+  "icon": "icon.png",
   "authors": [
-    "BeezzLand"
+    "BeezzLand",
+    "Mr712"
   ],
+  "contact": {
+    "homepage": "https://github.com/byMr712/BeezzKeysExtended-MinecraftMod",
+    "sources": "https://github.com/byMr712/BeezzKeysExtended-MinecraftMod",
+    "issues": "https://github.com/byMr712/BeezzKeysExtended-MinecraftMod/issues"
+  },
+  "license": "MIT",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "land.beezz.keys.BeezzKeys"
+      "land.beezz.keys.BeezzKeysClient"
     ]
-  },
-  "depends": {
-    "fabricloader": ">=0.19.0",
-    "minecraft": "~${minecraft_version}",
-    "fabric-api": "*"
   },
   "mixins": [
     {
       "config": "beezzkeys.client.mixins.json",
       "environment": "client"
     }
-  ]
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "~${minecraft_version}"
+  }
 }

@@ -3,11 +3,10 @@ package land.beezz.keys;
 import com.mojang.blaze3d.platform.InputConstants;
 import land.beezz.keys.KeyLayout.Cap;
 import land.beezz.keys.PopupMenu.Item;
-import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import land.beezz.keys.mixin.KeyMappingAccessor;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -163,7 +162,7 @@ public final class KeyboardScreen extends Screen {
     // ---- state ----
 
     private static InputConstants.Key keyOf(KeyMapping m) {
-        return KeyMappingHelper.getBoundKeyOf(m);
+        return ((KeyMappingAccessor) m).beezzkeys$key();
     }
 
     private Cat catOf(Row row) {
@@ -259,7 +258,7 @@ public final class KeyboardScreen extends Screen {
         config.macros = new ArrayList<>(s.macros);
         config.save();
         listening = null;
-        AbstractWidget.playButtonClickSound(minecraft.getSoundManager());
+        Compat.click(minecraft);
         changed();
     }
 
@@ -268,7 +267,7 @@ public final class KeyboardScreen extends Screen {
         m.setKey(key);
         listening = null;
         dragging = false;
-        AbstractWidget.playButtonClickSound(minecraft.getSoundManager());
+        Compat.click(minecraft);
         changed();
     }
 
@@ -706,7 +705,7 @@ public final class KeyboardScreen extends Screen {
             } else if (button == LEFT) {
                 Item item = open.click(mx, my);
                 if (item != null) {
-                    AbstractWidget.playButtonClickSound(minecraft.getSoundManager());
+                    Compat.click(minecraft);
                     item.action().run();
                     if (!item.keepOpen() && menu == open) menu = null;
                 }

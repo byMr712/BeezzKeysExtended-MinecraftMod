@@ -3,7 +3,6 @@ package land.beezz.keys;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.blaze3d.platform.InputConstants;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 
@@ -79,8 +78,13 @@ final class Config {
         }
     }
 
+    private static Path configDir() {
+        Minecraft minecraft = Minecraft.getInstance();
+        return (minecraft != null ? minecraft.gameDirectory : new java.io.File(".")).toPath().resolve("config");
+    }
+
     private static Path file() {
-        return FabricLoader.getInstance().getConfigDir().resolve("beezzkeys.json");
+        return configDir().resolve("beezzkeys.json");
     }
 
     static String modsText(int mods) {
@@ -100,7 +104,7 @@ final class Config {
     // ---- presets ----
 
     static Path presetsDir() {
-        Path dir = FabricLoader.getInstance().getConfigDir().resolve("beezzkeys").resolve("presets");
+        Path dir = configDir().resolve("beezzkeys").resolve("presets");
         try {
             Files.createDirectories(dir);
         } catch (IOException ignored) {

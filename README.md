@@ -1,80 +1,120 @@
-# BeezzKeys
+> **Language:** Русский · [English](README.en.md)
 
-A Minecraft mod that turns the Key Binds screen into a drawn keyboard: you see at a glance which keys are taken, which are free and where two actions clash. Client-side. Fabric: Minecraft 26.1 – 26.3, 1.21.11, 1.21.1, 1.20.1. NeoForge: 1.21.1. Forge: 1.20.1.
+<div align="center">
 
-Мод для Minecraft, который превращает «Назначение клавиш» в нарисованную клавиатуру: сразу видно, какие клавиши заняты, какие свободны и где конфликты. Только клиент. Fabric: Minecraft 26.1 – 26.3, 1.21.11, 1.21.1, 1.20.1. NeoForge: 1.21.1. Forge: 1.20.1. [Описание на русском ниже](#по-русски).
+  <img width="150" alt="Логотип BeezzKeys" src="images/icon.png">
+  <h3>BeezzKeys (Extended)</h3>
 
-![The keyboard: used keys take the colour of their category, free keys are grey](docs/keyboard.png)
+</div>
 
-## What it does
+<div align="center">
 
-- **Used, free, clashing.** A used key takes the colour of its category, a free key stays grey, a key with two actions is red. Keys of other mods are there too, each mod's category gets its own colour.
-- **Binding.** Click an action in the list, then press a key or click it on the drawing; free keys light up green while you choose. Or drag the action onto a key.
-- **Right-click a key** for its menu: put any action of any category on it, free it, or give it your own command.
-- **Your own commands.** A key can send a command (`/home`) or a chat line. Commands also take Ctrl, Shift and Alt, so `Ctrl+H` and `H` are different binds. Hold a modifier on the screen to see what is taken with it.
-- **English letters first.** Keys are labelled with English letters; the letter of the game's language sits small in the corner (Й on Q for Russian, Z on Y for German). Built-in tables: Russian, Ukrainian, Belarusian, German, French, Spanish, Portuguese, Turkish; other languages use the system layout.
-- **Categories.** The "+" under the keyboard chooses which categories the list shows. The keyboard itself always shows everything.
-- **Gear menu.** Named sets of key binds (save, load, share as a file), a numpad switch, undo (Ctrl+Z) and the plain Minecraft list.
+![Java 25+](https://img.shields.io/badge/Java-25+-blue.svg)
+![Minecraft](https://img.shields.io/badge/Minecraft-26.3-blue.svg)
+![Fabric](https://img.shields.io/badge/Loader-Fabric-blue.svg)
+![NeoForge](https://img.shields.io/badge/Loader-NeoForge-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-| | |
+</div>
+
+Клиентский мод, который превращает экран привязки клавиш в нарисованную клавиатуру: сразу видно, какие клавиши заняты, какие свободны и где две команды спорят за одну клавишу. Работает на **Fabric** и **NeoForge**, Fabric API и другие библиотеки не нужны.
+
+> Мод сделан и портирован с помощью ИИ по идеям автора и зрителей.
+
+<div align="center">
+
+  [<img width="900" alt="Скачать с GitHub" src="docs/keyboard.png">](../../releases)
+
+</div>
+
+## Галерея
+
+| Клавиатура | Выбор клавиши |
+| :---: | :---: |
+| ![Клавиатура](docs/keyboard.png) | ![Выбор клавиши](docs/choose-key.png) |
+
+| Конфликт | Меню клавиши |
+| :---: | :---: |
+| ![Конфликт](docs/conflict.png) | ![Меню клавиши](docs/key-menu.png) |
+
+| Своя команда | Категории списка |
+| :---: | :---: |
+| ![Своя команда](docs/command.png) | ![Категории](docs/categories.png) |
+
+| Ctrl удерживается | Другая раскладка |
+| :---: | :---: |
+| ![Ctrl удерживается](docs/ctrl-held.png) | ![Немецкая раскладка](docs/german.png) |
+
+## Возможности
+
+- **Занятые, свободные и конфликтующие клавиши.** Занятая клавиша окрашивается в цвет своей категории, свободная остаётся серой, а клавиша с двумя действиями становится красной. Клавиши других модов тоже видны: у каждой категории свой цвет.
+- **Привязка.** Нажмите на действие в списке, затем нажмите клавишу или кликните по ней на рисунке; свободные клавиши подсвечиваются зелёным. Можно и просто перетащить действие на клавишу.
+- **Правая кнопка по клавише** открывает её меню: поставить на неё любое действие любой категории, освободить клавишу или назначить свою команду.
+- **Свои команды.** Клавиша может отправить команду (`/home`) или строку в чат. Команды понимают Ctrl, Shift и Alt, поэтому `Ctrl+H` и `H` — разные привязки. Удерживайте модификатор на экране, чтобы увидеть, что занято с ним.
+- **Английские буквы на первом плане.** Клавиши подписаны английскими буквами, а буква языка игры стоит маленькой в углу (Й на Q для русского, Z на Y для немецкого). Встроены раскладки: русская, украинская, белорусская, немецкая, французская, испанская, португальская и турецкая; остальные языки используют системную раскладку.
+- **Категории.** Кнопка «+» под клавиатурой выбирает, какие категории показывать в списке. Сама клавиатура всегда показывает всё.
+- **Меню-шестерёнка.** Именованные наборы привязок (сохранить, загрузить, поделиться файлом), переключатель цифрового блока, отмена (Ctrl+Z) и обычный список Minecraft.
+
+## Установка
+
+Мод работает на **Fabric** и **NeoForge**. Fabric API и другие библиотеки не требуются.
+
+1. Установите [Fabric Loader](https://fabricmc.net/use/) (0.19.3 или новее) или [NeoForge](https://neoforged.net/) для Minecraft **26.3**.
+2. Положите в папку `mods` один JAR под свой загрузчик:
+   - `BeezzKeys-Fabric-26.3-v1.0.0.jar` — для Fabric;
+   - `BeezzKeys-NeoForge-26.3-v1.0.0.jar` — для NeoForge.
+3. Откройте **Настройки → Управление → Клавиши**.
+
+Мод нужен только на клиенте, ставить его на сервер не надо. Он работает на любом сервере и в одиночной игре.
+
+## Управление
+
+| Действие | Как |
 |---|---|
-| ![Choosing a key: free keys are green](docs/choose-key.png) | ![A conflict is red on the keyboard and in the list](docs/conflict.png) |
-| ![The menu of a key](docs/key-menu.png) | ![Your own command with Ctrl](docs/command.png) |
-| ![Choosing the categories of the list](docs/categories.png) | ![German: Z on Y, Ü, Ö, Ä in the corners](docs/german.png) |
+| Открыть клавиатуру | Настройки → Управление → Клавиши |
+| Назначить клавишу | Клик по действию, затем клавиша или клик по клавише на рисунке |
+| Перетащить действие | Зажать действие в списке и отпустить на клавише |
+| Меню клавиши | Правая кнопка мыши по клавише |
+| Своя команда | Правая кнопка по клавише → «Команда» |
+| Категории списка | Кнопка «+» под клавиатурой |
+| Наборы, цифровой блок, отмена | Кнопка-шестерёнка |
+| Отменить последнее изменение | Ctrl+Z |
+| Обычный список Minecraft | Шестерёнка → «Обычный список» |
 
-## Install
+## Полезно знать
 
-1. Install the loader for your game version: [Fabric Loader](https://fabricmc.net/use/) with [Fabric API](https://modrinth.com/mod/fabric-api), [NeoForge](https://neoforged.net/) or [Forge](https://files.minecraftforge.net/).
-2. Take the jar for your game version and loader from [Releases](../../releases) and put it into the `mods` folder.
+- В Minecraft у действий игры нет сочетаний клавиш, поэтому Ctrl / Shift / Alt работают только для ваших собственных команд.
+- Команда на обычной клавише не заменяет действие игры на этой же клавише: срабатывают оба, и клавиатура показывает это как конфликт. Команда на сочетании скрывает нажатие от игры.
+- Команды работают с клавиатуры, но не с кнопок мыши.
+- Некоторые серверы запрещают макросы. Одна команда на нажатие обычно допустима, но проверьте правила своего сервера.
+- Наборы — это файлы в `config/beezzkeys/presets`, а ваши команды и выбор категорий — в `config/beezzkeys.json`.
 
-| Game | Fabric | NeoForge | Forge |
-|---|---|---|---|
-| 26.1 – 26.3 | yes | | |
-| 1.21.11 | yes | | |
-| 1.21 – 1.21.1 | yes | yes | |
-| 1.20.1 | yes | | yes |
-3. Open Options → Controls → Key Binds.
+## Где хранятся настройки
 
-The mod is only needed on the client. It works on any server and in single player.
+- `config/beezzkeys.json` — свои команды, скрытые категории и переключатель цифрового блока.
+- `config/beezzkeys/presets/*.json` — именованные наборы привязок.
+- `options.txt` — обычные привязки Minecraft, как и раньше.
 
-## Good to know
+## Сборка
 
-- Minecraft itself has no key combinations for its actions, so Ctrl / Shift / Alt work for your own commands only.
-- A command on a plain key does not replace the game's action on the same key: both fire, and the keyboard shows it as a conflict. A command on a combination hides the key press from the game.
-- Commands work from the keyboard, not from mouse buttons.
-- Some servers forbid macros. One command per key press is usually fine, but check the rules of your server.
-- Sets are files in `config/beezzkeys/presets`, your commands and choices are in `config/beezzkeys.json`.
-
-## Build
-
-JDK 25 is needed.
+Нужен JDK 25 или новее.
 
 ```bash
-./gradlew build                                                              # 26.3
-./gradlew jar -Pminecraft_version=26.2   -Pfabric_version=0.161.0+26.2       # 26.2
-./gradlew jar -Pminecraft_version=26.1.2 -Pfabric_version=0.155.3+26.1.2     # 26.1
+./gradlew build
 ```
 
-Other game versions and loaders are generated from the same code: see [ports/README.md](ports/README.md).
+Команда собирает сразу два файла в `build/libs/`:
 
-`./gradlew runClientGameTest` starts a real client, clicks through the screen and saves screenshots to `build/run/clientGameTest/screenshots`. What differs between game versions lives in `src/compat`.
+- `BeezzKeys-Fabric-26.3-v1.0.0.jar`
+- `BeezzKeys-NeoForge-26.3-v1.0.0.jar`
 
-## По-русски
+Игровые тесты со скриншотами запускаются командой `./gradlew runClientGameTest`, скриншоты сохраняются в `build/run/clientGameTest/screenshots/`. Fabric API нужен только для этих тестов, сам мод без него работает.
 
-**BeezzKeys** заменяет экран «Настройки → Управление → Назначение клавиш» нарисованной клавиатурой.
+## Другие версии
 
-- **Занято, свободно, конфликт.** Занятая клавиша закрашена цветом категории, свободная серая, клавиша с двумя действиями красная. Клавиши других модов тоже видны, у категории каждого мода свой цвет.
-- **Назначение.** Кликните действие в списке и нажмите клавишу или кликните по ней на схеме; свободные клавиши в этот момент подсвечены зелёным. Действие можно и перетащить на клавишу.
-- **ПКМ по клавише** открывает её меню: повесить любое действие из любой категории, освободить клавишу или задать свою команду.
-- **Свои команды.** Клавиша может отправлять команду (`/home`) или сообщение в чат. Команды работают и с Ctrl, Shift, Alt: `Ctrl+H` и `H` — разные бинды. Зажмите модификатор на экране, чтобы увидеть, что с ним занято.
-- **Английские буквы.** На клавишах английские буквы, а буква языка игры стоит мелко в углу. Таблицы есть для русского, украинского, белорусского, немецкого, французского, испанского, португальского и турецкого; для остальных языков берётся раскладка системы.
-- **Категории.** «+» под клавиатурой выбирает, какие категории показывать в списке. Сама клавиатура всегда показывает всё.
-- **Шестерёнка.** Наборы раскладок (сохранить, загрузить, передать файлом), переключатель цифрового блока, отмена (Ctrl+Z) и обычный список Minecraft.
+Версии 1.21–26.3 живут в отдельных ветках этого репозитория: [1.21](../../tree/1.21), [1.21.1](../../tree/1.21.1), [1.21.2](../../tree/1.21.2), [1.21.3](../../tree/1.21.3), [1.21.4](../../tree/1.21.4), [1.21.5](../../tree/1.21.5), [1.21.6](../../tree/1.21.6), [1.21.7](../../tree/1.21.7), [1.21.8](../../tree/1.21.8), [1.21.9](../../tree/1.21.9), [1.21.10](../../tree/1.21.10), [1.21.11](../../tree/1.21.11), [26.1](../../tree/26.1), [26.1.1](../../tree/26.1.1), [26.1.2](../../tree/26.1.2), [26.2](../../tree/26.2), [26.3](../../tree/26.3). Версии ниже 1.21 остались в папке `ports/` без изменений.
 
-**Установка:** поставьте под свою версию игры Fabric Loader с Fabric API, NeoForge или Forge, скачайте jar под версию и загрузчик из [Releases](../../releases) и положите в папку `mods`. Мод нужен только на клиенте.
+## Авторы и лицензии
 
-**Что стоит знать:** в самом Minecraft сочетаний клавиш для действий нет, поэтому Ctrl / Shift / Alt работают только для своих команд. Команда на обычной клавише не отменяет действие игры на ней — сработают оба. На некоторых серверах макросы запрещены: сверьтесь с правилами.
-
-## License
-
-MIT
+- **Автор мода:** [erkinpaw](https://github.com/erkinpaw) · **Лицензия:** [MIT](LICENSE).
+- **Автор порта на Fabric/NeoForge 1.21–26.3:** [Mr712](https://github.com/byMr712/BeezzKeysExtended-MinecraftMod) · **Лицензия:** [MIT](LICENSE).

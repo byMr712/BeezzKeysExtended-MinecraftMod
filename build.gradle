@@ -1,8 +1,9 @@
 plugins {
     id 'net.fabricmc.fabric-loom' version '1.18.4'
+    id 'maven-publish'
 }
 
-version = project.mod_version + "+" + project.minecraft_version.tokenize(".").take(2).join(".")
+version = project.mod_version
 group = project.maven_group
 base { archivesName = project.archives_base_name }
 
@@ -16,24 +17,9 @@ loom {
     }
 }
 
-dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-}
+// what differs between game versions lives in one of these folders, picked by the branch
+sourceSets.client.java.srcDir "src/compat/sdl"
 
-processResources {
-    inputs.property "version", project.version
-    inputs.property "minecraft_version", project.minecraft_version
-    filesMatching("fabric.mod.json") { expand "version": project.version, "minecraft_version": project.minecraft_version.tokenize(".").take(2).join(".") }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    it.options.encoding = "UTF-8"
-    it.options.release = 25
-}
-
-// ./gradlew runClientGameTest opens the screen in a real client, clicks through it and saves screenshots
 fabricApi {
     configureTests {
         createSourceSet = true
@@ -44,6 +30,98 @@ fabricApi {
     }
 }
 
-// the input code changed with 26.3, the screen holder with 26.2: see src/compat
-def mcMinor = project.minecraft_version.tokenize('.')[1].toInteger()
-sourceSets.client.java.srcDir "src/compat/${mcMinor >= 3 ? 'sdl' : mcMinor == 2 ? 'glfw-gui' : 'glfw'}"
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    // Fabric API is only used by the optional Fabric client gametests, never by the mod itself.
+    gametestImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "loader_version", project.loader_version
+    filteringCharset "UTF-8"
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version,
+                "minecraft_version": project.minecraft_version,
+                "loader_version": project.loader_version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 25
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+}
+
+// ---------------------------------------------------------------------------
+// NeoForge dual-target build: one source tree, two loaders.
+// The Fabric entrypoint is excluded from the NeoForge JAR and the NeoForge
+// stubs are excluded as well, so the same compiled classes run on both loaders.
+// ---------------------------------------------------------------------------
+sourceSets {
+    neoforge {
+        java {
+            srcDirs = ['src/neoforge/java']
+        }
+        resources {
+            srcDirs = ['src/neoforge/resources']
+        }
+        compileClasspath += sourceSets.main.output + sourceSets.client.output + configurations.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.client.output + configurations.runtimeClasspath
+    }
+}
+
+processNeoforgeResources {
+    inputs.property "version", project.version
+    inputs.property "minecraft_version", project.minecraft_version
+
+    filesMatching("META-INF/neoforge.mods.toml") {
+        expand "version": project.version, "minecraft_version": project.minecraft_version
+    }
+}
+
+def artifactVersion = "v${project.version}"
+
+tasks.matching { it.name == 'jar' || it.name == 'remapJar' }.configureEach {
+    archiveFileName = "${project.archives_base_name}-${artifactVersion}.jar"
+}
+
+tasks.matching { it.name == 'sourcesJar' || it.name == 'remapSourcesJar' || it.name == 'javadocJar' }.configureEach {
+    enabled = false
+}
+
+task jarNeoForge(type: Jar) {
+    dependsOn compileNeoforgeJava, processNeoforgeResources, clientClasses, classes
+    archiveFileName = "${project.archives_base_name.replace('-Fabric-', '-NeoForge-')}-${artifactVersion}.jar"
+    destinationDirectory = layout.buildDirectory.dir("libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(sourceSets.main.output) {
+        exclude "fabric.mod.json"
+    }
+    from(sourceSets.client.output) {
+        // Fabric-only entrypoint; NeoForge uses BeezzKeysNeoForge instead.
+        exclude "land/beezz/keys/BeezzKeysClient.class"
+    }
+    from(sourceSets.neoforge.output) {
+        // Compile-time stubs must never reach the runtime classpath.
+        exclude "net/**"
+    }
+    from("LICENSE")
+}
+
+build.dependsOn(jarNeoForge)
+
+tasks.named('jar') {
+    from("LICENSE")
+}
