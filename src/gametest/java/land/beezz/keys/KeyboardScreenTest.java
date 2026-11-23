@@ -124,7 +124,7 @@ public class KeyboardScreenTest implements FabricClientGameTest {
             mc.options.languageCode = LANG;
             mc.getLanguageManager().setSelected(LANG);
             mc.options.guiScale().set(3);
-            mc.resizeGui();
+            mc.resizeDisplay();
         });
         ctx.waitTicks(20);
         ctx.runOnClient(Minecraft::reloadResourcePacks);
@@ -254,13 +254,13 @@ public class KeyboardScreenTest implements FabricClientGameTest {
         language(LANG);
         ctx.runOnClient(mc -> {
             mc.options.guiScale().set(4);
-            mc.resizeGui();
+            mc.resizeDisplay();
         });
         ctx.waitTicks(10);
         shot("keys_18_small");
         ctx.runOnClient(mc -> {
             mc.options.guiScale().set(3);
-            mc.resizeGui();
+            mc.resizeDisplay();
         });
         ctx.setScreen(TitleScreen::new);
 
