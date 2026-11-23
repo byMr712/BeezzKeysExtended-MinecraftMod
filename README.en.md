@@ -10,7 +10,7 @@
 <div align="center">
 
 ![Java 25+](https://img.shields.io/badge/Java-25+-blue.svg)
-![Minecraft](https://img.shields.io/badge/Minecraft-26.3-blue.svg)
+![Minecraft](https://img.shields.io/badge/Minecraft-26.1.1-blue.svg)
 ![Fabric](https://img.shields.io/badge/Loader-Fabric-blue.svg)
 ![NeoForge](https://img.shields.io/badge/Loader-NeoForge-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
@@ -59,10 +59,10 @@ A client-side mod that turns the Key Binds screen into a drawn keyboard: you see
 
 The mod runs on **Fabric** and **NeoForge**. Fabric API and other libraries are not required.
 
-1. Install [Fabric Loader](https://fabricmc.net/use/) (0.19.3 or newer) or [NeoForge](https://neoforged.net/) for Minecraft **26.3**.
+1. Install [Fabric Loader](https://fabricmc.net/use/) (0.18.4 or newer) or [NeoForge](https://neoforged.net/) for Minecraft **26.1.1**.
 2. Place one JAR for your loader into the `mods` folder:
-   - `BeezzKeys-Fabric-26.3-v1.0.0.jar` for Fabric;
-   - `BeezzKeys-NeoForge-26.3-v1.0.0.jar` for NeoForge.
+   - `BeezzKeys-Fabric-26.1.1-v1.0.0.jar` for Fabric;
+   - `BeezzKeys-NeoForge-26.1.1-v1.0.0.jar` for NeoForge.
 3. Open **Options → Controls → Key Binds**.
 
 The mod is only needed on the client. It works on any server and in single player.
@@ -105,14 +105,14 @@ JDK 25 or newer is required.
 
 The command builds both files in `build/libs/`:
 
-- `BeezzKeys-Fabric-26.3-v1.0.0.jar`
-- `BeezzKeys-NeoForge-26.3-v1.0.0.jar`
+- `BeezzKeys-Fabric-26.1.1-v1.0.0.jar`
+- `BeezzKeys-NeoForge-26.1.1-v1.0.0.jar`
 
 Game tests with screenshots are run with `./gradlew runClientGameTest`; screenshots are saved to `build/run/clientGameTest/screenshots/`. Fabric API is only needed by those tests, the mod itself works without it.
 
 ## Other versions
 
-Versions 1.21-26.3 live in separate branches of this repository: [1.21](../../tree/1.21), [1.21.1](../../tree/1.21.1), [1.21.2](../../tree/1.21.2), [1.21.3](../../tree/1.21.3), [1.21.4](../../tree/1.21.4), [1.21.5](../../tree/1.21.5), [1.21.6](../../tree/1.21.6), [1.21.7](../../tree/1.21.7), [1.21.8](../../tree/1.21.8), [1.21.9](../../tree/1.21.9), [1.21.10](../../tree/1.21.10), [1.21.11](../../tree/1.21.11), [26.1](../../tree/26.1), [26.1.1](../../tree/26.1.1), [26.1.2](../../tree/26.1.2), [26.2](../../tree/26.2), [26.3](../../tree/26.3). Versions below 1.21 stay unchanged in the `ports/` folder.
+Versions 1.21-26.3 live in separate branches of this repository: [1.21](../../tree/1.21), [1.21.1](../../tree/1.21.1), [1.21.2](../../tree/1.21.2), [1.21.3](../../tree/1.21.3), [1.21.4](../../tree/1.21.4), [1.21.5](../../tree/1.21.5), [1.21.6](../../tree/1.21.6), [1.21.7](../../tree/1.21.7), [1.21.8](../../tree/1.21.8), [1.21.9](../../tree/1.21.9), [1.21.10](../../tree/1.21.10), [1.21.11](../../tree/1.21.11), [26.1](../../tree/26.1), [26.1.1](../../tree/26.1.1), [26.1.2](../../tree/26.1.2), [26.2](../../tree/26.2), [26.3](../../tree/26.3). Versions below 1.21 stay unchanged in the `ports/` folder of the 26.3 branch.
 
 ## Authors and Licenses
 

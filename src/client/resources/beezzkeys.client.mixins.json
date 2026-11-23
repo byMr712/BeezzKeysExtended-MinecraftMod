@@ -3,12 +3,12 @@
   "package": "land.beezz.keys.mixin",
   "compatibilityLevel": "JAVA_25",
   "client": [
-    "KeyBindsScreenMixin",
     "KeyboardHandlerMixin",
     "KeyMappingAccessor",
     "LanguageMixin",
     "MinecraftMixin",
     "OptionsSubScreenAccessor",
+    "OptionsSubScreenMixin",
     "ScreenAccessor"
   ],
   "injectors": { "defaultRequire": 1 }
