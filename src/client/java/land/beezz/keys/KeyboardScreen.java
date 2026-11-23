@@ -6,7 +6,7 @@ import land.beezz.keys.PopupMenu.Item;
 import land.beezz.keys.mixin.KeyMappingAccessor;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -465,9 +465,9 @@ public final class KeyboardScreen extends Screen {
     // ---- drawing ----
 
     @Override
-    public void extractRenderState(GuiGraphicsExtractor g, int mx, int my, float partialTick) {
-        super.extractRenderState(g, mx, my, partialTick);
-        g.centeredText(font, title, width / 2, 11, WHITE);
+    public void render(GuiGraphics g, int mx, int my, float partialTick) {
+        super.render(g, mx, my, partialTick);
+        g.drawCenteredString(font, title, width / 2, 11, WHITE);
         boolean free = menu == null && !dragging;
 
         int right = kbX + Math.round(layoutW * unit);
@@ -489,14 +489,14 @@ public final class KeyboardScreen extends Screen {
                 g.fill(chip.x + 6, chip.y + 2, chip.x + 8, chip.y + 8, WHITE);
             } else {
                 g.fill(chip.x, chip.y + 1, chip.x + 8, chip.y + 9, chip.color);
-                g.text(font, chip.text, chip.x + 11, chip.y + 1, chip.kind == 2 ? 0xFFB8B8C0 : 0xFFDDDDDD, false);
+                g.drawString(font, chip.text, chip.x + 11, chip.y + 1, chip.kind == 2 ? 0xFFB8B8C0 : 0xFFDDDDDD, false);
             }
         }
         if (hoverChip != null) g.setTooltipForNextFrame(font, Component.translatable("beezzkeys.tip.categories"), mx, my);
 
         List<FormattedCharSequence> hint = font.split(hint(), width - 20);
         for (int i = 0; i < Math.min(hint.size(), hintLines); i++) {
-            g.centeredText(font, hint.get(i), width / 2, hintY + i * 10, listening != null || heldMods != 0 ? YELLOW : 0xFFB8B8C0);
+            g.drawCenteredString(font, hint.get(i), width / 2, hintY + i * 10, listening != null || heldMods != 0 ? YELLOW : 0xFFB8B8C0);
         }
 
         list(g, mx, my, free);
@@ -507,7 +507,7 @@ public final class KeyboardScreen extends Screen {
             int w = font.width(name);
             g.fill(mx + 6, my - 6, mx + 14 + w, my + 7, 0xF0101014);
             g.fill(mx + 6, my - 6, mx + 9, my + 7, catOf(new Row(listening, null)).color);
-            g.text(font, name, mx + 11, my - 3, WHITE, false);
+            g.drawString(font, name, mx + 11, my - 3, WHITE, false);
         }
         if (menu != null) {
             g.nextStratum();
@@ -515,7 +515,7 @@ public final class KeyboardScreen extends Screen {
         }
     }
 
-    private void cap(GuiGraphicsExtractor g, Cap c, boolean hover, InputConstants.Key current) {
+    private void cap(GuiGraphics g, Cap c, boolean hover, InputConstants.Key current) {
         InputConstants.Key key = c.key();
         List<Row> on = byKey.get(key);
         boolean reserved = key.equals(ESCAPE);
@@ -546,35 +546,35 @@ public final class KeyboardScreen extends Screen {
             fit(g, c.label(), (x0 + x1) / 2, (y0 + y1) / 2, x1 - x0 - 4, text);
         } else {
             // the English letter low on the left, the letter of the game's language small in the upper right corner
-            g.text(font, c.label(), x0 + 4, y1 - 10, text, false);
+            g.drawString(font, c.label(), x0 + 4, y1 - 10, text, false);
             float s = 0.7F;
             g.pose().pushMatrix();
             g.pose().translate(x1 - 3 - font.width(second) * s, y0 + 2);
             g.pose().scale(s, s);
-            g.text(font, second, 0, 0, mix(text, fill, 0.25F), false);
+            g.drawString(font, second, 0, 0, mix(text, fill, 0.25F), false);
             g.pose().popMatrix();
         }
     }
 
     /** Text centred on a point and shrunk when it is wider than the room it has. */
-    private void fit(GuiGraphicsExtractor g, String text, int cx, int cy, int room, int color) {
+    private void fit(GuiGraphics g, String text, int cx, int cy, int room, int color) {
         int w = font.width(text);
         if (w <= room) {
-            g.text(font, text, cx - w / 2, cy - 4, color, false);
+            g.drawString(font, text, cx - w / 2, cy - 4, color, false);
             return;
         }
         float s = Math.max(0.3F, (float) room / w);
         g.pose().pushMatrix();
         g.pose().translate(cx, cy);
         g.pose().scale(s, s);
-        g.text(font, text, -w / 2, -4, color, false);
+        g.drawString(font, text, -w / 2, -4, color, false);
         g.pose().popMatrix();
     }
 
     private static final String[] RESET_ICON = {"..#....", ".####..", "######.", ".##..##", "..#..##", ".....##", "..####."};
 
     /** A hooked arrow drawn by pixels: the font's own glyph is too small to read. */
-    private static void resetIcon(GuiGraphicsExtractor g, int x, int y, int color) {
+    private static void resetIcon(GuiGraphics g, int x, int y, int color) {
         for (int row = 0; row < RESET_ICON.length; row++) {
             String line = RESET_ICON[row];
             for (int col = 0; col < line.length(); col++) {
@@ -629,11 +629,11 @@ public final class KeyboardScreen extends Screen {
         return lines;
     }
 
-    private void list(GuiGraphicsExtractor g, int mx, int my, boolean free) {
+    private void list(GuiGraphics g, int mx, int my, boolean free) {
         g.fill(8, listTop - 2, width - 8, listBottom + 2, 0x50000000);
         if (visible.isEmpty()) {
             boolean none = search.isBlank() && pinned == null;
-            g.centeredText(font, Component.translatable(none ? "beezzkeys.empty_categories" : "beezzkeys.empty"), width / 2,
+            g.drawCenteredString(font, Component.translatable(none ? "beezzkeys.empty_categories" : "beezzkeys.empty"), width / 2,
                     (listTop + listBottom) / 2 - 4, FREE_TEXT);
             return;
         }
@@ -657,7 +657,7 @@ public final class KeyboardScreen extends Screen {
             int room = boxX - x - 10;
             boolean cut = font.width(name) > room;
             if (cut) name = font.plainSubstrByWidth(name, room - 6) + "…";
-            g.text(font, name, x + 6, y + 3, WHITE, false);
+            g.drawString(font, name, x + 6, y + 3, WHITE, false);
             // a name that does not fit is shown in full under the cursor
             if (cut && hover && zoneAt(mx) == 0 && mx < boxX) g.setTooltipForNextFrame(font, Component.literal(rowName(row)), mx, my);
 
