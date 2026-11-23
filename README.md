@@ -9,8 +9,8 @@
 
 <div align="center">
 
-![Java 25+](https://img.shields.io/badge/Java-25+-blue.svg)
-![Minecraft](https://img.shields.io/badge/Minecraft-26.3-blue.svg)
+![Java 21+](https://img.shields.io/badge/Java-21+-blue.svg)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.21-blue.svg)
 ![Fabric](https://img.shields.io/badge/Loader-Fabric-blue.svg)
 ![NeoForge](https://img.shields.io/badge/Loader-NeoForge-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
@@ -59,10 +59,10 @@
 
 Мод работает на **Fabric** и **NeoForge**. Fabric API и другие библиотеки не требуются.
 
-1. Установите [Fabric Loader](https://fabricmc.net/use/) (0.19.3 или новее) или [NeoForge](https://neoforged.net/) для Minecraft **26.3**.
+1. Установите [Fabric Loader](https://fabricmc.net/use/) (0.15.11 или новее) или [NeoForge](https://neoforged.net/) для Minecraft **1.21**.
 2. Положите в папку `mods` один JAR под свой загрузчик:
-   - `BeezzKeys-Fabric-26.3-v1.0.0.jar` — для Fabric;
-   - `BeezzKeys-NeoForge-26.3-v1.0.0.jar` — для NeoForge.
+   - `BeezzKeys-Fabric-1.21-v1.0.0.jar` — для Fabric;
+   - `BeezzKeys-NeoForge-1.21-v1.0.0.jar` — для NeoForge.
 3. Откройте **Настройки → Управление → Клавиши**.
 
 Мод нужен только на клиенте, ставить его на сервер не надо. Он работает на любом сервере и в одиночной игре.
@@ -97,7 +97,7 @@
 
 ## Сборка
 
-Нужен JDK 25 или новее.
+Нужен JDK 21 или новее.
 
 ```bash
 ./gradlew build
@@ -105,14 +105,14 @@
 
 Команда собирает сразу два файла в `build/libs/`:
 
-- `BeezzKeys-Fabric-26.3-v1.0.0.jar`
-- `BeezzKeys-NeoForge-26.3-v1.0.0.jar`
+- `BeezzKeys-Fabric-1.21-v1.0.0.jar`
+- `BeezzKeys-NeoForge-1.21-v1.0.0.jar`
 
 Игровые тесты со скриншотами запускаются командой `./gradlew runClientGameTest`, скриншоты сохраняются в `build/run/clientGameTest/screenshots/`. Fabric API нужен только для этих тестов, сам мод без него работает.
 
 ## Другие версии
 
-Версии 1.21–26.3 живут в отдельных ветках этого репозитория: [1.21](../../tree/1.21), [1.21.1](../../tree/1.21.1), [1.21.2](../../tree/1.21.2), [1.21.3](../../tree/1.21.3), [1.21.4](../../tree/1.21.4), [1.21.5](../../tree/1.21.5), [1.21.6](../../tree/1.21.6), [1.21.7](../../tree/1.21.7), [1.21.8](../../tree/1.21.8), [1.21.9](../../tree/1.21.9), [1.21.10](../../tree/1.21.10), [1.21.11](../../tree/1.21.11), [26.1](../../tree/26.1), [26.1.1](../../tree/26.1.1), [26.1.2](../../tree/26.1.2), [26.2](../../tree/26.2), [26.3](../../tree/26.3). Версии ниже 1.21 остались в папке `ports/` без изменений.
+Версии 1.21–26.3 живут в отдельных ветках этого репозитория: [1.21](../../tree/1.21), [1.21.1](../../tree/1.21.1), [1.21.2](../../tree/1.21.2), [1.21.3](../../tree/1.21.3), [1.21.4](../../tree/1.21.4), [1.21.5](../../tree/1.21.5), [1.21.6](../../tree/1.21.6), [1.21.7](../../tree/1.21.7), [1.21.8](../../tree/1.21.8), [1.21.9](../../tree/1.21.9), [1.21.10](../../tree/1.21.10), [1.21.11](../../tree/1.21.11), [26.1](../../tree/26.1), [26.1.1](../../tree/26.1.1), [26.1.2](../../tree/26.1.2), [26.2](../../tree/26.2), [26.3](../../tree/26.3). Версии ниже 1.21 остались без изменений в папке `ports/` ветки 26.3.
 
 ## Авторы и лицензии
 

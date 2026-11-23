@@ -2,7 +2,7 @@ package land.beezz.keys;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.input.KeyEvent;
+import land.beezz.keys.input.KeyEvent;
 
 /** Sends the player's own commands when their keys are pressed in the game (no screen open). */
 public final class Macros {
@@ -14,7 +14,7 @@ public final class Macros {
     /** @return true when the press belongs to a combination and the game must not see it */
     public static boolean onKey(int action, KeyEvent event) {
         Minecraft mc = Minecraft.getInstance();
-        InputConstants.Key key = InputConstants.getKey(event);
+        InputConstants.Key key = InputConstants.getKey(event.key(), event.scancode());
         int own = Config.modBit(key);
         if (!mc.isWindowActive()) held = 0;
         if (action == InputConstants.RELEASE) held &= ~own;

@@ -5,4 +5,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = 'beezzkeys-fabric-26.3'
+rootProject.name = 'beezzkeys-fabric-1.21'
