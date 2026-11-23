@@ -141,8 +141,8 @@ final class KeyLayout {
         mouse(caps, InputConstants.MOUSE_BUTTON_LEFT, m, 1.25F, 1, 1.5F, "beezzkeys.mouse.left");
         mouse(caps, InputConstants.MOUSE_BUTTON_MIDDLE, m + 1, 1.25F, 1, 1.5F, "beezzkeys.mouse.middle");
         mouse(caps, InputConstants.MOUSE_BUTTON_RIGHT, m + 2, 1.25F, 1, 1.5F, "beezzkeys.mouse.right");
-        mouse(caps, InputConstants.MOUSE_BUTTON_4, m, 2.75F, 1.5F, 1, "beezzkeys.mouse.4");
-        mouse(caps, InputConstants.MOUSE_BUTTON_5, m + 1.5F, 2.75F, 1.5F, 1, "beezzkeys.mouse.5");
+        mouse(caps, 3, m, 2.75F, 1.5F, 1, "beezzkeys.mouse.4");
+        mouse(caps, 4, m + 1.5F, 2.75F, 1.5F, 1, "beezzkeys.mouse.5");
         return caps;
     }
 

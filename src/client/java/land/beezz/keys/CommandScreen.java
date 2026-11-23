@@ -1,11 +1,11 @@
 package land.beezz.keys;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.input.KeyEvent;
+import land.beezz.keys.input.KeyEvent;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 
@@ -22,6 +22,7 @@ final class CommandScreen extends Screen {
 
     CommandScreen(KeyboardScreen parent, InputConstants.Key key, String keyLabel, int mods, Config.Macro existing) {
         super(Component.translatable("beezzkeys.command.title"));
+        this.minecraft = net.minecraft.client.Minecraft.getInstance();
         this.parent = parent;
         this.key = key;
         this.keyLabel = keyLabel;
@@ -77,21 +78,22 @@ final class CommandScreen extends Screen {
     }
 
     @Override
-    public boolean keyPressed(KeyEvent event) {
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        KeyEvent event = new KeyEvent(keyCode, scanCode, modifiers);
         if (event.isConfirmation()) {
             save();
             return true;
         }
-        return super.keyPressed(event);
+        return super.keyPressed(event.key(), event.scancode(), event.modifiers());
     }
 
     @Override
-    public void extractRenderState(GuiGraphicsExtractor g, int mx, int my, float partialTick) {
-        super.extractRenderState(g, mx, my, partialTick);
+    public void render(GuiGraphics g, int mx, int my, float partialTick) {
+        super.render(g, mx, my, partialTick);
         int cx = width / 2, y = height / 2 - 40;
-        g.centeredText(font, title, cx, y - 34, 0xFFFFFFFF);
-        g.centeredText(font, Component.literal(Config.modsText(mods) + keyLabel), cx, y - 18, 0xFFFFD84A);
-        g.centeredText(font, Component.translatable("beezzkeys.command.note"), cx, y + 90, 0xFF9A9AA4);
+        g.drawCenteredString(font, title, cx, y - 34, 0xFFFFFFFF);
+        g.drawCenteredString(font, Component.literal(Config.modsText(mods) + keyLabel), cx, y - 18, 0xFFFFD84A);
+        g.drawCenteredString(font, Component.translatable("beezzkeys.command.note"), cx, y + 90, 0xFF9A9AA4);
     }
 
     @Override
