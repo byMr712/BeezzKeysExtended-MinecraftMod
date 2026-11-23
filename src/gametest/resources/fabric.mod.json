@@ -4,5 +4,6 @@
   "version": "1.0.0",
   "name": "BeezzKeys screen test",
   "environment": "client",
+  "depends": { "beezzkeys": "*" },
   "entrypoints": { "fabric-client-gametest": ["land.beezz.keys.KeyboardScreenTest"] }
 }
