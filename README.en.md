@@ -59,7 +59,7 @@ A client-side mod that turns the Key Binds screen into a drawn keyboard: you see
 
 The mod runs on **Fabric** and **NeoForge**. Fabric API and other libraries are not required.
 
-1. Install [Fabric Loader](https://fabricmc.net/use/) (0.18.4 or newer) or [NeoForge](https://neoforged.net/) for Minecraft **26.1**.
+1. Install [Fabric Loader](https://fabricmc.net/use/) (0.18.0 or newer) or [NeoForge](https://neoforged.net/) for Minecraft **26.1**.
 2. Place one JAR for your loader into the `mods` folder:
    - `BeezzKeys-Fabric-26.1-v1.0.0.jar` for Fabric;
    - `BeezzKeys-NeoForge-26.1-v1.0.0.jar` for NeoForge.
