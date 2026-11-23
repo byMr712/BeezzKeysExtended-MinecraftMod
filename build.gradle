@@ -1,5 +1,5 @@
 plugins {
-    id 'net.fabricmc.fabric-loom' version '1.18.4'
+    id 'fabric-loom' version '1.18-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -17,8 +17,8 @@ loom {
     }
 }
 
-// what differs between game versions lives in one of these folders, picked by the branch
-sourceSets.client.java.srcDir "src/compat/sdl"
+// what differs between game versions lives in this folder, one copy per branch
+sourceSets.client.java.srcDir "src/compat/glfw"
 
 fabricApi {
     configureTests {
@@ -30,15 +30,20 @@ fabricApi {
     }
 }
 
+tasks.matching { it.name == 'runClientGameTest' }.configureEach {
+    jvmArgs '-Dfabric.client.gametest.disableNetworkSynchronizer=true'
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     // Fabric API is only used by the optional Fabric client gametests, never by the mod itself.
-    gametestImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 processResources {
@@ -56,11 +61,11 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
-    it.options.release = 25
+    it.options.release = 21
 }
 
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(25)
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
 }
 
 // ---------------------------------------------------------------------------
@@ -92,7 +97,12 @@ processNeoforgeResources {
 
 def artifactVersion = "v${project.version}"
 
-tasks.matching { it.name == 'jar' || it.name == 'remapJar' }.configureEach {
+jar {
+    archiveFileName = "${project.archives_base_name}-${artifactVersion}.jar"
+    from("LICENSE")
+}
+
+tasks.matching { it.name == 'remapJar' }.configureEach {
     archiveFileName = "${project.archives_base_name}-${artifactVersion}.jar"
 }
 
@@ -121,7 +131,3 @@ task jarNeoForge(type: Jar) {
 }
 
 build.dependsOn(jarNeoForge)
-
-tasks.named('jar') {
-    from("LICENSE")
-}
