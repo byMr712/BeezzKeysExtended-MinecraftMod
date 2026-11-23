@@ -3,7 +3,7 @@ package land.beezz.keys.input;
 import com.mojang.blaze3d.platform.InputConstants;
 
 /**
- * Before 1.21.9 a key press reached a screen as three ints. This record gives the ports the same methods the 26.x code
+ * Before 1.21.9 a key press reached a screen as three ints. This record gives the ports the same methods the newer code
  * calls on the game's own KeyEvent, so that code needs no changes.
  */
 public record KeyEvent(int key, int scancode, int modifiers) {
