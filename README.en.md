@@ -97,7 +97,7 @@ The mod is only needed on the client. It works on any server and in single playe
 
 ## Building
 
-JDK 21 or newer is required.
+JDK 25 or newer is required to build: Gradle and Loom run on it, while the mod itself compiles for Java 21. Java 21 is enough to play.
 
 ```bash
 ./gradlew build
