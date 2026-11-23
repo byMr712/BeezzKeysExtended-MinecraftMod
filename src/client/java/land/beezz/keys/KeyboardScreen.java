@@ -87,7 +87,7 @@ public final class KeyboardScreen extends Screen {
     public KeyboardScreen(Screen parent) {
         super(Component.translatable("beezzkeys.title"));
         this.parent = parent;
-        mappings = minecraft.options.keyMappings.clone();
+        mappings = net.minecraft.client.Minecraft.getInstance().options.keyMappings.clone();
         Arrays.sort(mappings);
         for (KeyMapping m : mappings) {
             names.put(m, Component.translatable(m.getName()).getString());
