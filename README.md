@@ -59,7 +59,7 @@
 
 Мод работает на **Fabric** и **NeoForge**. Fabric API и другие библиотеки не требуются.
 
-1. Установите [Fabric Loader](https://fabricmc.net/use/) (0.16.9 или новее) или [NeoForge](https://neoforged.net/) для Minecraft **1.21.4**.
+1. Установите [Fabric Loader](https://fabricmc.net/use/) (0.16.0 или новее) или [NeoForge](https://neoforged.net/) для Minecraft **1.21.4**.
 2. Положите в папку `mods` один JAR под свой загрузчик:
    - `BeezzKeys-Fabric-1.21.4-v1.0.0.jar` — для Fabric;
    - `BeezzKeys-NeoForge-1.21.4-v1.0.0.jar` — для NeoForge.
