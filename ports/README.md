@@ -1,5 +1,9 @@
 # Ports: other game versions and loaders
 
+> **1.21–26.3 now live in separate Git branches** named after the game version (`26.3` is the default branch). This
+> folder is kept for the 1.20.1 ports below and as the old generator; the 1.21 entries are historical and are
+> superseded by the branches.
+
 The mod is written once, in `../src`, for Minecraft 26.x on Fabric. `gen.py` turns that code into the code of each port
 below; nothing in `<port>/src` is edited by hand (it is generated and ignored by git).
 
